@@ -117,7 +117,7 @@ input[type=submit]:hover {
 				<li><a th:href="@{/customer/updateCustomer?id=}+${customer.id}">Edit</a></li>
 			</ol>
 				<h3 th:text="${customer.customerName}"></h3>
-				<div class="row">
+				
 					<div class="col-xs-6">						
 						<p><strong>Area Located: </strong><span th:text="${customer.AreaLocated}"></span></p>					
 						<p><strong>Shop name: </strong><span th:text="${customer.shopName}"></span></p>
@@ -125,7 +125,7 @@ input[type=submit]:hover {
 						<p><strong>Facebook Name: </strong><span th:text="${customer.facebookName}"></span></p>
 						<p><strong>Email: </strong><span th:text="${customer.email}"></span></p>
 					</div>
-				</div>
+				
 				
 				<p><Strong>Description: </Strong><span th:utext="${customer.description}"></span></p>
 			</div>
