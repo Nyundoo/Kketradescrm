@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/loginx.css}" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+
+
+<!-- data table -->
+<link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet" />
+<link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet" />
+
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+
+<link rel="icon" href="/image/applie-touch-icon.png" />
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <a class="navbar-brand" th:href="@{/}">Worker Portal</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/customer/add}">Add a new customer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/customer/customerList}">View customer list</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/logout}">Sign out</a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <form class="form-horizontal" th:action="@{/customer/add}" method="post" enctype="multipart/form-data">
+  <fieldset>
+					<legend class="center-block">
+						Update customer Information<span style="font-size: small"> * is a
+							required field</span>
+					</legend>
+	<!-- CustomerName -->
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">* Customer Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="customerName" class="form-control" id="title" th:value="${customer.customerName}" required="required" placeholder="customerName" />
+      </div>
+    </div>
+    
+    <!-- shopName -->
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">* Shop Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="shopName" class="form-control" id="title" th:value="${customer.shopName}" required="required" placeholder="shopName" />
+      </div>
+    </div>
+    
+    <!-- phoneNumber -->
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">* Phone Number</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="phoneNumber" class="form-control" id="title" th:value="${customer.phoneNumber}" required="required" placeholder="phoneNumber" />
+      </div>
+    </div>
+    
+    <!-- AreaLocated -->
+    <div class="row">
+      <div class="col-25">
+        <label for="country">* County</label>
+      </div>
+      <div class="col-75">
+        <select th:value="${customer.AreaLocated}" id="category" name="AreaLocated"
+								class="form-control">
+								<option value="" selected="selected" disabled="disabled">Please
+									select an option...</option>
+								<option value="Fasteners"
+									th:selected="(${customer.AreaLocated}=='Fasteners')">Fasteners</option>
+								<option value="Building materials"
+									th:selected="(${customer.AreaLocated}=='Building materials')">Building materials</option>
+								<option value="Hand tools"
+									th:selected="(${customer.AreaLocated}=='Hand tools')">Hand tools</option>
+								<option value="Power tools"
+									th:selected="(${customer.AreaLocated}=='Power tools')">Power tools</option>
+								<option value="Locks"
+									th:selected="(${customer.AreaLocated}=='Locks')">Locks</option>
+									<option value="Hinges"
+									th:selected="(${customer.AreaLocated}=='Hinges')">Hinges</option>
+									<option value="Plumbing supplies"
+									th:selected="(${customer.AreaLocated}=='Plumbing supplies')">Plumbing supplies</option>
+									<option value="Hinges"
+									th:selected="(${customer.AreaLocated}=='Hinges')">Hinges</option>
+									<option value="Electrical supplies"
+									th:selected="(${customer.AreaLocated}=='Electrical supplies')">Electrical supplies</option>
+									<option value="Clean products"
+									th:selected="(${customer.AreaLocated}=='Clean products')">Clean products</option>
+									<option value="Tools utensils"
+									th:selected="(${customer.AreaLocated}=='Tools utensils')">Tools utensils</option>
+									<option value="Paints"
+									th:selected="(${customer.AreaLocated}=='Paints')">Lawn &amp; garden products</option>
+							</select>
+      </div>
+    </div>
+    
+    <!-- facebookName -->
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Facebook Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="facebookName" class="form-control" id="title" th:value="${customer.facebookName}" placeholder="facebookName" />
+      </div>
+    </div>
+    
+    <!-- email -->
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">* Email</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="email" class="form-control" id="title"	th:value="${customer.email}" required="required" placeholder="email" />
+      </div>
+    </div>
+    
+    <!-- description -->
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">More Info</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+    </fieldset>
+  </form>
+</div>
+
+</body>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/bootbox.min.js}"></script>
+		<script th:src="@{/js/scripts.js}"></script>
+		
+		<!-- data table -->
+		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
+</html>
